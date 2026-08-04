@@ -1,0 +1,4 @@
+# Vulnerabilites acceptees avec justification
+# Format : CVE-XXXX-XXXXX  # raison + date de revue
+# Exemple :
+# CVE-2023-12345  # Faux positif - le module concerne n'est pas utilise en production. Revu le 2026-08-04.
