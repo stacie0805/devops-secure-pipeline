@@ -42,6 +42,8 @@ Push / Pull Request
 ## Pratiques de sécurité implémentées
 
 - **Image Docker durcie** : build multi-stage, base Alpine, exécution en utilisateur non-root (UID 1001), pas de devDependencies en production
+- **Gestionnaire de paquets retiré du runtime** : npm, npx et corepack sont supprimés de l'image finale. Le conteneur n'exécute que `node`, ce qui élimine les CVE des dépendances transitives de npm et empêche l'installation de paquets par un attaquant
+- **Système de base à jour** : `apk upgrade` corrige les CVE Alpine à chaque build
 - **Scan de vulnérabilités automatisé** : Trivy bloque le pipeline sur toute CVE critique corrigeable
 - **Audit des dépendances** : `npm audit` échoue au niveau HIGH avant même le build
 - **Headers HTTP sécurisés** : Helmet applique CSP, HSTS, X-Frame-Options, X-Content-Type-Options

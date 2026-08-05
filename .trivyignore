@@ -1,4 +1,22 @@
-# Vulnerabilites acceptees avec justification
-# Format : CVE-XXXX-XXXXX  # raison + date de revue
-# Exemple :
-# CVE-2023-12345  # Faux positif - le module concerne n'est pas utilise en production. Revu le 2026-08-04.
+# ══════════════════════════════════════════════════════════════════════
+# Vulnerabilites acceptees — chaque entree DOIT etre justifiee et datee
+# ══════════════════════════════════════════════════════════════════════
+#
+# Format : CVE-XXXX-XXXXX  # justification + date de revue
+#
+# ── Entrees actives ───────────────────────────────────────────────────
+#
+# (aucune actuellement)
+#
+# ── Historique / references ───────────────────────────────────────────
+#
+# CVE-2026-59873 (tar 6.2.1, node-tar DoS via gzip bomb)
+#   Statut : CORRIGE a la source, pas ignore.
+#   Origine : dependance transitive de npm (node-gyp -> tar) presente
+#             dans l'image de base node:24-alpine. Ce n'est PAS une
+#             dependance de l'application (npm ls tar => vide).
+#   Correction : suppression de npm/npx/corepack de l'etape runtime du
+#             Dockerfile. Le conteneur de production n'execute que
+#             "node src/server.js" et n'a pas besoin d'un gestionnaire
+#             de paquets. Reduit aussi la surface d'attaque.
+#   Date : 2026-08-04
