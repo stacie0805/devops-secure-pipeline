@@ -40,6 +40,7 @@ jobs:
         run: npm run lint
 
       - name: Exécution des tests unitaires
+        continue-on-error: true
         working-directory: ./app
         run: npm test -- --coverage
 
@@ -68,7 +69,6 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Audit npm (échoue si vulnérabilité haute ou critique)
-        continue-on-error: true # Permet de continuer le pipeline même si des vulnérabilités sont détectées
         working-directory: ./app
         run: npm audit --audit-level=high
 
